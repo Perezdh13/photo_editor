@@ -32,15 +32,14 @@ export default function EditorPanel(){
   
     return (
       <div className={style.container}>
-        <HeadBar  /> 
         <div className={style.zoomButtons}>
+        <HeadBar  /> 
           <button onClick={handleZoomIn}>Zoom In</button>
           <button onClick={handleZoomOut}>Zoom Out</button>
         </div>
-        <div className={style.imageContainer} >
-          <img className={style.img} src={imageUrl} alt="Imagen" style={{ transform: `scale(${zoomLevel / 100})` }}/>
-        </div>
-        
+        <div className={style.imageContainer}>
+          <img className={style.img} src={imageUrl}  style={{ transform: `scale(${zoomLevel / 100})` }}/>
+        </div>      
         </div>
     
     );

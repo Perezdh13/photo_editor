@@ -7,14 +7,15 @@ const configuration = new Configuration({
   });
 const openai = new OpenAIApi(configuration);
 
-export default function useGenerateImage() {
+export default function useGenerateImage(prompt) {
+  
   const [image, setImage] = useState(null);
 
 
   const generateImage = async () => {
     try {
       const response = await openai.createImage({
-        prompt: "un logotipo de una empresa que se dedica a la creacion de displays y accesorios para simracing y vehiculos de competicion. el nombre de la empresa es: PRZ performance",
+        prompt: prompt,
         n: 1,
         size: "1024x1024",
       });
