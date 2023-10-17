@@ -1,13 +1,16 @@
 import useGenerateImage from '@/app/editor/hooks/useGenerateImage'
 import style from './AiButton.module.css'
 import { useState } from 'react';
+import useVariationImage from '@/app/editor/hooks/useVariationImage';
 
 export default function AiButton() {
     const [prompt, setPrompt] = useState(null)
     const [newImage, setNewImage] = useState(false)
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const generateImage = useGenerateImage(prompt)
- console.log(prompt);
+    const createVariationImage = useVariationImage()
+
+
 
 const mouseOut = () => {
     setTimeout(() => {
@@ -28,8 +31,8 @@ return (
             {isDropdownVisible && (
                 <div className={style.dropdownContent} onMouseOut={mouseOut}>
                     <a href="#" onClick={(()=>setNewImage(true))} >Crear nueva imagen</a>
-                    <a href="#">Modificar imagen</a>
-                    <a href="#">Crear una variante</a>
+                    <a href="#" >Modificar imagen</a>
+                    <a href="#"onClick={(()=>createVariationImage())}>Crear una variante</a>
                 </div>
             )}
             {newImage && (

@@ -3,13 +3,17 @@ import { useState } from "react";
 import style from './FileButton.module.css'
 
 export default function FileButton() {
-    const { selectedFile, openFileInput, inputFileRef, handleFileUpload } = useHandleFileUpload()
+    const { selectedFile, openFileInput, inputFileRef,saveFileRef, handleFileUpload,handleDownload, openSaveFile } = useHandleFileUpload()
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
 
-    const onButtonClick = () => {
+    const openButton = () => {
         openFileInput();
     };
+
+    const saveButton=()=>{
+        openSaveFile();
+    }
     const mouseOut = () => {
         setTimeout(() => {
             setDropdownVisible(false)
@@ -25,13 +29,20 @@ export default function FileButton() {
                 onChange={handleFileUpload}
                 type="file"
             />
+            <input
+                style={{ display: "none" }}
+                accept=".png,jpeg"
+                ref={saveFileRef}
+                onChange={handleDownload}
+                type="file"
+            />
             <button className={style.button} onClick={(() => setDropdownVisible(true))} >
                 Archivo
             </button>
             {isDropdownVisible && (
                 <div className={style.dropdownContent} onMouseOut={mouseOut}>
-                    <a href="#" onClick={onButtonClick}>Abrir</a>
-                    <a href="#">Guardar</a>
+                    <a href="#" onClick={openButton}>Abrir</a>
+                    <a href="#" onClick={saveButton}>Guardar</a>
                     <a href="#">Guardar como ...</a>
                 </div>
             )}
