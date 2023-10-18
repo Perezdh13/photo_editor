@@ -15,8 +15,7 @@ console.log(imageUrl);
 useEffect(()=>{
 if(imageUrl !== null && isImage === false){
   setIsImage(true)
-}
-},[imageUrl])
+}},[imageUrl])
 
     const handleFileChange = (newFile) => {
       setFile(newFile);
@@ -34,7 +33,11 @@ if(imageUrl !== null && isImage === false){
       const imageData = event =>{
         setImageUrl(event.detail)
       }
+      const imageFile = event =>{
+        setImageUrl(event.detail)
+      }
       document.addEventListener('imageUrl',imageData)
+      document.addEventListener('imageFile',imageFile)
     })
 
   
