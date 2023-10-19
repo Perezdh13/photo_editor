@@ -8,14 +8,15 @@ import Foto from '../../assets/prz.png'
 export default function EditorPanel(){
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(Foto)
-    const [zoomLevel, setZoomLevel] = useState(100);
+    const [zoomLevel, setZoomLevel] = useState(90);
     const [isImage,setIsImage] = useState(false)
-console.log(imageUrl);  
+  
 
 useEffect(()=>{
-if(imageUrl !== null && isImage === false){
-  setIsImage(true)
-}},[imageUrl])
+    if(imageUrl !== null && isImage === false){
+      setIsImage(true)
+    }
+},[imageUrl])
 
     const handleFileChange = (newFile) => {
       setFile(newFile);
@@ -37,7 +38,7 @@ if(imageUrl !== null && isImage === false){
         setImageUrl(event.detail)
       }
       document.addEventListener('imageUrl',imageData)
-      document.addEventListener('imageFile',imageFile)
+      document.addEventListener('imageUrl',imageFile)
     })
 
   
