@@ -17,7 +17,7 @@ def Home():
     
     if custom_prompt is not None:
         response = openai.Image.create(
-            prompt="una casa amarilla",
+            prompt="un perrito con bufanda",
             n=1,
             size="1024x1024"
         )
