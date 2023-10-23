@@ -3,7 +3,7 @@ import style from './BackgroundRemoveButton.module.css'
 
 export default function BackgrounRemoveButton(){
 const [dataPy, setDataPy] = useState(null)
-console.log(dataPy);
+
 const removePy = () => {
     fetch('http://127.0.0.1:5000/hola', {
       method: 'GET',

@@ -11,7 +11,8 @@ export default function useHandleFileUpload() {
     const { files } = e.target;
     const fileToUrl = URL.createObjectURL(files[0])
     setSelectedFile(files)
-    setImageUrl(fileToUrl);
+   //setImageUrl(files[0])
+     setImageUrl(fileToUrl);
   };
 
   const openFileInput = () => {

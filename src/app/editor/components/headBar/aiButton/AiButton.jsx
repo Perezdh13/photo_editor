@@ -1,16 +1,21 @@
-import useGenerateImage from '@/app/editor/hooks/useGenerateImage'
 import style from './AiButton.module.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useVariationImage from '@/app/editor/hooks/useVariationImage';
+import CreateImage from '@/app/editor/service/2.0 editor/createImage';
 
 export default function AiButton() {
     const [prompt, setPrompt] = useState(null)
     const [newImage, setNewImage] = useState(false)
     const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const generateImage = useGenerateImage(prompt)
-    const createVariationImage = useVariationImage()
+    const [image, setImage] = useState(null);
+    const [processingImage, setProcessingImage] = useState(false)
 
+    console.log(image);
+   
 
+const newApiImage = () => {
+  CreateImage().getImage(prompt).then((data)=>{setImage(data)})
+}
 
 const mouseOut = () => {
     setTimeout(() => {
@@ -19,9 +24,23 @@ const mouseOut = () => {
 }    
 
 const handleCreateImage = ()=>{
-    generateImage()
+    setProcessingImage(true)
+    newApiImage()
     setNewImage(false)
 }
+
+useEffect(()=>{
+    
+    const imageData = new CustomEvent("imageData", {
+      detail:image
+    })
+    const processImage = new CustomEvent("processImage", {
+        detail:processingImage
+    })
+ 
+    document.dispatchEvent(imageData)
+    document.dispatchEvent(processImage)
+  },[image,processingImage])
 
 return (
         <>
