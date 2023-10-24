@@ -1,20 +1,28 @@
 import style from './AiButton.module.css'
 import { useEffect, useState } from 'react';
-import CreateImage from '@/app/editor/service/2.0 editor/createImage';
+import CreateImage from '@/app/editor/service/editor 2.0/createImage';
+import CreateVariable from '@/app/editor/service/editor 2.0/CreateVariable';
+import { data } from 'autoprefixer';
 
 export default function AiButton() {
     const [prompt, setPrompt] = useState(null)
     const [newImage, setNewImage] = useState(false)
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [image, setImage] = useState(null);
+    const [imageVariable, setImageVariable] = useState(null)
     const [processingImage, setProcessingImage] = useState(false)
 
-    console.log(image);
-    console.log(prompt);
+   
+    console.log(imageVariable);
+   
    
 
 const newApiImage = () => {
   CreateImage().getImage(prompt).then((data)=>{setImage(data)})
+}
+
+const newApiImageVariable = () => {
+    CreateVariable().getImageVariable().then((data)=>{setImageVariable})
 }
 
 const mouseOut = () => {
@@ -51,7 +59,7 @@ return (
                 <div className={style.dropdownContent} onMouseOut={mouseOut}>
                     <a href="#" onClick={(()=>setNewImage(true))} >Crear nueva imagen</a>
                     <a href="#" >Modificar imagen</a>
-                    <a href="#"onClick={(()=>createVariationImage())}>Crear una variante</a>
+                    <a href="#"onClick={(()=>newApiImageVariable())}>Crear una variante</a>
                 </div>
             )}
             {newImage && (
