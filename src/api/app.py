@@ -10,14 +10,14 @@ load_dotenv()
 openai.api_key = os.getenv("API_KEY")
 
 
-@app.route("/newImage",methods=("GET","POST"))
+@app.route("/newImage")
 def Home():
     custom_prompt = request.args.get("prompt")
     print(custom_prompt)
     
     if custom_prompt is not None:
         response = openai.Image.create(
-            prompt="un perrito con bufanda",
+            prompt=custom_prompt,
             n=1,
             size="1024x1024"
         )

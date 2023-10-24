@@ -1,6 +1,5 @@
 import style from './AiButton.module.css'
 import { useEffect, useState } from 'react';
-import useVariationImage from '@/app/editor/hooks/useVariationImage';
 import CreateImage from '@/app/editor/service/2.0 editor/createImage';
 
 export default function AiButton() {
@@ -11,6 +10,7 @@ export default function AiButton() {
     const [processingImage, setProcessingImage] = useState(false)
 
     console.log(image);
+    console.log(prompt);
    
 
 const newApiImage = () => {
