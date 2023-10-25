@@ -23,6 +23,10 @@ export default function ChatPanel() {
         setIsNewImageVisible(!isNewImageVisible)
     }
 
+    const toggleVariationVisibility = () =>{
+        setIsVariationImageVisible(!isVariationImageVisible)
+    }
+
     const newApiImage = () => {
         CreateImage().getImage(prompt).then((data)=>{setImage(data)})
       }
@@ -54,7 +58,7 @@ export default function ChatPanel() {
                         <p>Hola soy Aythen, en que puedo ayudarte?</p>
                         <ul>
                             <li className={style.li} onChange={((e)=>setPrompt(e.target.value))} onClick={toggleNewImageVisibility}> Quiero crear una foto</li>
-                            <li className={style.li}> Quiero crear una foto parecida a la mia</li>
+                            <li className={style.li} onClick={toggleVariationVisibility}> Quiero crear una foto parecida a la mia</li>
                             <li className={style.li}> Quiero eliminar un fondo</li>
                         </ul>
                     </seccion>

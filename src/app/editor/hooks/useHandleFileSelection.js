@@ -24,8 +24,20 @@ export default function useHandleFileUpload() {
   };
 
   const openSaveFile = () =>{
-     saveFileRef.current.click();
-  }
+    
+      const content = imageUrl; 
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+  
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'image.png'; 
+      document.body.appendChild(a);
+      a.click();
+  
+      URL.revokeObjectURL(url);
+    };
+  
 
   useEffect(()=>{
     const urlImage = new CustomEvent("imageUrl",{
