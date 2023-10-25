@@ -1,4 +1,5 @@
-from flask import Blueprint, request
+from io import BytesIO
+from flask import Blueprint, request,send_file
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -19,9 +20,11 @@ def CreateImage():
         response = openai.Image.create(
             prompt=custom_prompt,
             n=1,
-            size="1024x1024"
+            size="512x512"
         )
-        return response['data'][0]['url']
+        image_data = response['data'][0]['url']
+        return image_data
+       # return {image_data, send_file(BytesIO(response['data'][0]),mimetype='image/png')}
     else:
         return "El parámetro 'prompt' no se proporcionó en la solicitud."
 

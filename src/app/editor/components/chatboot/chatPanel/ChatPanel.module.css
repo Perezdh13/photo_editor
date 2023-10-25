@@ -1,0 +1,39 @@
+.container {
+    position: absolute;
+    z-index: 1;
+   
+    width: 18vw;
+    height: 90vh;
+    right: 12px;
+    top:10px;
+}
+
+.logo {
+   border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.overlayDiv {
+    position: absolute;
+    z-index: 1;
+    background-color: azure;
+    border: 2px solid blue;
+    width: 18vw;
+    height: 90vh;
+    right: 12px;
+    top:10px;
+}
+
+.closeButton{
+    position: absolute;
+    right:0;
+    top:0;
+}
+
+.li:hover {
+    cursor: pointer;
+}
+

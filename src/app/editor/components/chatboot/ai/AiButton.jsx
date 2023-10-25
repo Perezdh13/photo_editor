@@ -2,7 +2,7 @@ import style from './AiButton.module.css'
 import { useEffect, useState } from 'react';
 import CreateImage from '@/app/editor/service/editor 2.0/createImage';
 import CreateVariable from '@/app/editor/service/editor 2.0/CreateVariable';
-import { data } from 'autoprefixer';
+
 
 export default function AiButton() {
     const [prompt, setPrompt] = useState(null)
