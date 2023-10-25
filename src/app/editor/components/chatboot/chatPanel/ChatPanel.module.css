@@ -14,6 +14,8 @@
     bottom: 0;
     right: 0;
     cursor: pointer;
+    animation: spin 5s infinite
+    ;
 }
 
 .overlayDiv {
@@ -35,5 +37,17 @@
 
 .li:hover {
     cursor: pointer;
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    10%{
+        transform: rotate(360deg);
+    }
+    100%{
+        transform: rotate(360deg)
+    }
 }
 
