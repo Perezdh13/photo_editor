@@ -1,5 +1,5 @@
 
-import ChatPanel from './components/chatboot/chatPanel/ChatPanel'
+import ChatPanel from './components/chatPanel/ChatPanel'
 import EditorPanel from './components/editorPanel/EditorPanel'
 
 export default function Editor() {

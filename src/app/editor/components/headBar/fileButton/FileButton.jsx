@@ -3,7 +3,7 @@ import { useState } from "react";
 import style from './FileButton.module.css'
 
 export default function FileButton() {
-    const { selectedFile, openFileInput, inputFileRef,saveFileRef, handleFileUpload,handleDownload, openSaveFile } = useHandleFileUpload()
+    const { selectedFile, openFileInput, inputFileRef,saveFileRef, handleFileUpload,handleDownload, openSaveFile,saveFile } = useHandleFileUpload()
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
 
@@ -12,7 +12,7 @@ export default function FileButton() {
     };
 
     const saveButton=()=>{
-        openSaveFile();
+        saveFile();
     }
     const mouseOut = () => {
         setTimeout(() => {
@@ -27,13 +27,6 @@ export default function FileButton() {
                 accept=".png,jpeg"
                 ref={inputFileRef}
                 onChange={handleFileUpload}
-                type="file"
-            />
-            <input
-                style={{ display: "none" }}
-                accept=".png,jpeg"
-                ref={saveFileRef}
-                onChange={handleDownload}
                 type="file"
             />
             <button className={style.button} onClick={(() => setDropdownVisible(true))} >

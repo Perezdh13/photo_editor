@@ -3,17 +3,22 @@ import { useEffect, useRef, useState } from "react";
 export default function useHandleFileUpload() {
   const inputFileRef = useRef(null);
   const saveFileRef = useRef(null);
-  const [imageUrl, setImageUrl] = useState(null)
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageBase64, setImageBase64] = useState(null)
+  const [imageData, setImageData] = useState(null)
+ 
+
+  const handleFileUpload = (f) => {
+    const selectedFile = f.target.files[0];
+    setImageData(selectedFile);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+        setImageBase64(reader.result);
+    };
+    reader.readAsDataURL(selectedFile)
+};
 
 
-  const handleFileUpload = (e) => {
-    const { files } = e.target;
-    const fileToUrl = URL.createObjectURL(files[0])
-    setSelectedFile(files)
-   //setImageUrl(files[0])
-     setImageUrl(fileToUrl);
-  };
 
   const openFileInput = () => {
     inputFileRef.current.click();
@@ -23,9 +28,10 @@ export default function useHandleFileUpload() {
    
   };
 
-  const openSaveFile = () =>{
-    
-      const content = imageUrl; 
+  const saveFile = () =>{
+   
+
+      const content = imageData; 
       const blob = new Blob([content], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
   
@@ -36,27 +42,33 @@ export default function useHandleFileUpload() {
       a.click();
   
       URL.revokeObjectURL(url);
-    };
+     };
   
 
   useEffect(()=>{
-    const urlImage = new CustomEvent("imageUrl",{
-      detail:imageUrl
+    // const aiImageData = event =>{
+    //   setImageUrl(event.detail)
+    // }
+
+    const eventImageBase64 = new CustomEvent("imageBase64", {
+      detail: imageBase64
     })
-    const imageData = new CustomEvent("imageData", {
-      detail:imageUrl
+
+    
+    const eventImageData = new CustomEvent("imageData", {
+      detail:imageData
     })
-    document.dispatchEvent(urlImage)
-    document.dispatchEvent(imageData)
-  },[selectedFile,imageUrl])
+    // document.addEventListener('imageData',aiImageData)
+    document.dispatchEvent(eventImageBase64)
+    document.dispatchEvent(eventImageData)
+  },[imageBase64,imageData])
 
   return {
-    selectedFile,
     openFileInput,
     inputFileRef,
     saveFileRef,
     handleFileUpload,
     handleDownload,
-    openSaveFile
+    saveFile
   };
 }
