@@ -21,6 +21,7 @@ load_dotenv()
 
 @deleteBackground.route("/deleteBackground", methods=["POST"])
 def removeBack():
+    
     image_data = request.json.get("imageBuffer")
     image_data = image_data.split(",")[1]
     image_binary = base64.b64decode(image_data)
