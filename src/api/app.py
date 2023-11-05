@@ -1,6 +1,7 @@
 from flask import Flask
 from editor_2_0.newImage import app1
 from editor_2_0.createVariable import createVariable
+from editor_2_0.deleteBackground import deleteBackground
 from flask_cors import CORS
 
 
@@ -9,6 +10,7 @@ CORS(app)
 # Registra los blueprints en la aplicación principal
 app.register_blueprint(app1)
 app.register_blueprint(createVariable)
+app.register_blueprint(deleteBackground)
 
 
 if __name__ == "__main__":

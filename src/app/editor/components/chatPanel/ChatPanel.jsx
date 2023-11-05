@@ -5,6 +5,7 @@ import Image from 'next/image';
 import CreateImage from '@/app/editor/service/editor 2.0/CreateImage';
 import CreateVariable from '@/app/editor/service/editor 2.0/CreateVariable';
 import { GlobalVariables } from '../../hooks/globalVariables';
+import DeleteBackground from '../../service/editor 2.0/DeleteBackground';
 
 
 export default function ChatPanel() {
@@ -47,6 +48,18 @@ export default function ChatPanel() {
         newApiImage()
     }
 
+    const handleDeleteBackground = () => {
+        setProcessing(true)
+        deleteBackground()
+    }
+
+    const deleteBackground = () => {
+        DeleteBackground().getImageWithoutBackground(image).then((data) => {
+            setImage("data:image/png;base64,"+data)
+            setProcessing(false)
+        })
+    }
+
     
     
 
@@ -60,7 +73,7 @@ export default function ChatPanel() {
                         <ul>
                             <li className={style.li} onChange={((e) => setPrompt(e.target.value))} onClick={toggleNewImageVisibility}> Quiero crear una foto</li>
                             <li className={style.li} onClick={toggleVariationVisibility}> Quiero crear una foto parecida a la mia</li>
-                            <li className={style.li}> Quiero eliminar un fondo</li>
+                            <li className={style.li} onClick={handleDeleteBackground}> Quiero eliminar un fondo</li>
                         </ul>
                     </div>
                     {isNewImageVisible === true ? (
