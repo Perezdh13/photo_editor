@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { GlobalVariables } from "./globalVariables";
 
 export default function useHandleFileUpload() {
   const inputFileRef = useRef(null);
   const saveFileRef = useRef(null);
   const [imageBase64, setImageBase64] = useState(null)
   const [imageData, setImageData] = useState(null)
- 
+  const {image, setImage} = useContext(GlobalVariables)
 
   const handleFileUpload = (f) => {
     const selectedFile = f.target.files[0];
@@ -13,7 +14,7 @@ export default function useHandleFileUpload() {
 
     const reader = new FileReader();
     reader.onloadend = () => {
-        setImageBase64(reader.result);
+        setImage(reader.result);
     };
     reader.readAsDataURL(selectedFile)
 };
@@ -31,7 +32,7 @@ export default function useHandleFileUpload() {
   const saveFile = () =>{
    
 
-      const content = imageData; 
+      const content = image; 
       const blob = new Blob([content], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
   
@@ -45,23 +46,7 @@ export default function useHandleFileUpload() {
      };
   
 
-  useEffect(()=>{
-    // const aiImageData = event =>{
-    //   setImageUrl(event.detail)
-    // }
-
-    const eventImageBase64 = new CustomEvent("imageBase64", {
-      detail: imageBase64
-    })
-
-    
-    const eventImageData = new CustomEvent("imageData", {
-      detail:imageData
-    })
-    // document.addEventListener('imageData',aiImageData)
-    document.dispatchEvent(eventImageBase64)
-    document.dispatchEvent(eventImageData)
-  },[imageBase64,imageData])
+  
 
   return {
     openFileInput,

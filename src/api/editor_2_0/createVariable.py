@@ -2,6 +2,7 @@ from io import BytesIO
 from flask import Blueprint, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+import requests
 import os
 import openai
 import base64
@@ -36,6 +37,10 @@ def createImageVariable():
             n=1,
             size="1024x1024"
         )
-    return response['data'][0]['url']
+    image = requests.get(response['data'][0]['url'])
+    image_data = image.content
+    image_base64 = f"data:image/png;base64,{base64.b64encode(image_data).decode('utf-8')}"
+ 
+    return image_base64
     
 
