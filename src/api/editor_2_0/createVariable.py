@@ -4,6 +4,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import requests
 import os
+import io
 import openai
 import base64
 from PIL import Image
@@ -19,16 +20,13 @@ def createImageVariable():
     
     image_data = request.json.get("imageBuffer")
     image_data = image_data.split(",")[1]
-    image_binary = base64.b64decode(image_data)
+    # image_binary = base64.b64decode(image_data)
     
-    with open("image.png","wb") as f:
-        f.write(image_binary)
-    
-    image = Image.open("image.png")
+    image = Image.open(io.BytesIO(image_binary))
     width, height = 256, 256
     image = image.resize((width, height))
 
-# Convert the image to a BytesIO object
+
     byte_stream = BytesIO()
     image.save(byte_stream, format='PNG')
     byte_array = byte_stream.getvalue()

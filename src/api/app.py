@@ -7,7 +7,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-# Registra los blueprints en la aplicación principal
+
 app.register_blueprint(app1)
 app.register_blueprint(createVariable)
 app.register_blueprint(deleteBackground)

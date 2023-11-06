@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import style from './ChatPanel.module.css';
 import Image from 'next/image';
 import CreateImage from '@/app/editor/service/editor 2.0/CreateImage';

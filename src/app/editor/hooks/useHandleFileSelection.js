@@ -4,13 +4,11 @@ import { GlobalVariables } from "./globalVariables";
 export default function useHandleFileUpload() {
   const inputFileRef = useRef(null);
   const saveFileRef = useRef(null);
-  const [imageBase64, setImageBase64] = useState(null)
-  const [imageData, setImageData] = useState(null)
   const {image, setImage} = useContext(GlobalVariables)
 
   const handleFileUpload = (f) => {
     const selectedFile = f.target.files[0];
-    setImageData(selectedFile);
+   
 
     const reader = new FileReader();
     reader.onloadend = () => {
