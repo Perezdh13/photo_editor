@@ -14,7 +14,6 @@ export default function EditorPanel() {
   const [processingImage, setProcessingImage] = useState(false)
   const {image,setimage, processing, setProcessing} = useContext(GlobalVariables)
 
-console.log(image);
 
   const handleZoomIn = () => {
     setZoomLevel(zoomLevel + 10);

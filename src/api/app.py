@@ -6,6 +6,7 @@ from editor_1_0.createMaskColor import createMaskColor
 from flask_cors import CORS
 
 
+
 app = Flask(__name__)
 CORS(app)
 

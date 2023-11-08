@@ -16,7 +16,7 @@ export default function ChatPanel() {
     const {image, setImage, processing, setProcessing} = useContext(GlobalVariables)
     
 
-    console.log(image);
+    
 
     const toggleChatVisibility = () => {
         setIsChatVisible(!isChatVisible);

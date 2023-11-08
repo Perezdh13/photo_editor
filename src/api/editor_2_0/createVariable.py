@@ -20,6 +20,7 @@ def createImageVariable():
     
     image_data = request.json.get("imageBuffer")
     image_data = image_data.split(",")[1]
+    image_binary = base64.b64decode(image_data)
     
     image = Image.open(io.BytesIO(image_binary))
     width, height = 256, 256
