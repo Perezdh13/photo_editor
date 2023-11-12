@@ -1,5 +1,36 @@
-.button{
-    margin:0;
+.maskBar{
+    display: flex;
+    margin: 0;
     padding: 0;
-    cursor:pointer;
+    background-color: rgb(232, 232, 232);
+    border-radius: 5px;
+}
+
+
+.button{
+    border-radius: 5px;
+    background-color: #d8e9f4;
+    border: none;
+    color:black;
+    cursor: pointer;
+    height: 100%;
+    width:auto;
+    min-width: 2vw;
+    font-size: 20px;
+    margin:5px;       
+}
+
+.button:hover{         
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+} 
+
+.imageButton{
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.imageButton:hover{
+    box-shadow: 2px 2px 2px 0px rgb(252, 252, 252);
 }

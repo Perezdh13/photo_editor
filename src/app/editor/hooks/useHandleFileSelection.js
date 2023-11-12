@@ -4,17 +4,30 @@ import { GlobalVariables } from "./globalVariables";
 export default function useHandleFileUpload() {
   const inputFileRef = useRef(null);
   const saveFileRef = useRef(null);
-  const {image, setImage} = useContext(GlobalVariables)
+  const {image, setImage,context, setContext} = useContext(GlobalVariables)
+ 
 
-  const handleFileUpload = (f) => {
-    const selectedFile = f.target.files[0];
-   
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        setImage(reader.result);
+const handleFileUpload = (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      setContext(ctx);
+      setImage(canvas.toDataURL());
     };
-    reader.readAsDataURL(selectedFile)
+    img.src = reader.result;
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
 };
 
 
