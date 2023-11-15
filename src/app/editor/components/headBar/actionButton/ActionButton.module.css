@@ -1,0 +1,41 @@
+.maskBar{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(232, 232, 232);
+    border-radius: 5px;
+    align-items: center;
+}
+.imageButton{
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    .imageButton:hover{
+        box-shadow: 2px 2px 2px 0px rgb(252, 252, 252);
+    }
+
+
+.imageContainer {
+    position: relative;
+  }
+  
+  .buttonWrapper {
+    position: relative;
+    display: inline-block; 
+  }
+  
+  .popup {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    font-size: 10px;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 1; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  

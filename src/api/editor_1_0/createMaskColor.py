@@ -19,7 +19,12 @@ def maskColor():
     image_data = request.json.get("imageBuffer")
     image_data = image_data.split(",")[1]
     image_binary = base64.b64decode(image_data)
-    
+    color = request.json.get("colorHSV")
+    print(color)
+    #color = np.array([25,126,237])
+    range_tolerance_H = 15
+    range_tolerance_S = 126
+    range_tolerance_V = 126
    
 
     image_np = np.frombuffer(image_binary, np.uint8)
@@ -30,8 +35,13 @@ def maskColor():
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
   
-    lower_yellow = np.array([15,50,180])
-    upper_yellow = np.array([40,255,255])
+    lower_bound = np.array([0, 0, 0])
+    upper_bound = np.array([255, 255, 255])
+
+    lower_yellow = np.clip(color - np.array([range_tolerance_H, range_tolerance_S, range_tolerance_V]), lower_bound, upper_bound)
+    upper_yellow = np.clip(color + np.array([range_tolerance_H, range_tolerance_S, range_tolerance_V]), lower_bound, upper_bound)
+   
+
 
   
     mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
@@ -44,7 +54,7 @@ def maskColor():
     result_base64 = base64.b64encode(result_image).decode()  
     
     
-    
-    
-    return mask_base64
+    mask_options = jsonify(Mask = mask_base64,Result = result_base64)
+   
+    return mask_options
     

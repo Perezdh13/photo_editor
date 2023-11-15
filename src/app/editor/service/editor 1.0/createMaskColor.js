@@ -3,9 +3,10 @@ import axios from "axios"
 import { urlDB } from "../urlDB"
 
 function createMaskColor(){
-    const newMaskColor = async (image) => {
+    const newMaskColor = async (image, hsvValues) => {
         const response = await axios.post(`${urlDB}/createMaskColor`,
-        {imageBuffer: image})
+        {imageBuffer: image,
+        colorHSV: hsvValues})
         return response.data
     }
     return {newMaskColor}

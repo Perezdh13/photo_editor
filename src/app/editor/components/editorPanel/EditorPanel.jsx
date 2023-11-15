@@ -12,8 +12,14 @@ export default function EditorPanel() {
   const [zoomLevel, setZoomLevel] = useState(90);
   const [isImage, setIsImage] = useState(false)
   const [processingImage, setProcessingImage] = useState(false)
-  const { image, setimage, processing, setProcessing, context, setContext } = useContext(GlobalVariables)
-  const {color, setColor} = useContext(GlobalVariables)
+  const { image, setimage } = useContext(GlobalVariables)
+  const { color, setColor } = useContext(GlobalVariables)
+  const { isColorSelect, setIsColorSelect } = useContext(GlobalVariables)
+  const { processing, setProcessing } = useContext(GlobalVariables)
+  const { context, setContext } = useContext(GlobalVariables)
+
+
+
 
 
 
@@ -31,6 +37,7 @@ export default function EditorPanel() {
     const pixel = context.getImageData(x, y, 1, 1).data;
     const rgba = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, ${pixel[3] / 255})`;
     setColor(rgba);
+    
   };
 
   return (
@@ -42,16 +49,18 @@ export default function EditorPanel() {
       </div>
       {processing === true ? (
         <Loader />
-      ) :
-        <div className={style.imageContainer}>
-          <img className={style.img} onClick={pickColor} src={image} style={{ cursor: 'crosshair', transform: `scale(${zoomLevel / 100})` }} />
-        </div>
-      }
-      
-
-
-      
-
+      ) : (
+         isColorSelect === true ? (
+          <div className={style.imageContainer}>
+            <img className={style.img} onClick={pickColor} src={image} style={{ cursor: 'crosshair', transform: `scale(${zoomLevel / 100})` }} />
+          </div>
+        ) : (
+          <div className={style.imageContainer}>
+            <img className={style.img} src={image} style={{ transform: `scale(${zoomLevel / 100})` }} />
+          </div>
+        )  
+      )
+        }
     </div>
 
   );

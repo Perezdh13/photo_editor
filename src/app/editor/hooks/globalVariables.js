@@ -7,13 +7,17 @@ export const MyProvider = ({children}) => {
     const [processing, setProcessing] = useState(false)
     const [context, setContext] = useState(null)
     const [color, setColor] = useState('#FFFFFF')
+    const [isColorSelect, setIsColorSelect] = useState(false)
+    const [colorHSV, setColorHSV] = useState('#FFFFFF')
 
     return (
         <GlobalVariables.Provider value={{
             image, setImage,
             processing, setProcessing,
             context, setContext,
-            color, setColor}}>
+            color, setColor,
+            isColorSelect, setIsColorSelect,
+            colorHSV, setColorHSV}}>
             {children}
         </GlobalVariables.Provider>
     )
